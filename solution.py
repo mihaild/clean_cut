@@ -97,7 +97,11 @@ def main():
                 image[i, j, 1] = min(255, image[i, j, 1] + 100)
                 image[i, j, 2] = image[i, j, 2] / 3
 
-    misc.imsave('out.png', image)
+    if len(sys.argv) > 2:
+        fout = sys.argv[2]
+    else:
+        fout = 'out.png'
+    misc.imsave(fout, image)
 
 
 if __name__ == "__main__":
