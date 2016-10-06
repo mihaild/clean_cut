@@ -1,6 +1,14 @@
 import sys
 from scipy import misc
-from tqdm import tqdm
+try:
+    from tqdm import tqdm
+except ImportError:
+    def tqdm(it, total):
+        step = total // 10 + 1
+        for n, x in enumerate(it):
+            if n % step == 0:
+                sys.stderr.write('%d from %d\n' % (n, total, ))
+            yield x
 
 
 def dist(x, y):
