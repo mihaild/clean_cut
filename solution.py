@@ -14,7 +14,8 @@ except ImportError:
 
 
 def dist(x, y):
-    return sum((x - y) ** 2)
+    v = x - y
+    return v.dot(v)
 
 
 def get_neighbours(i, j, max_i, max_j):
@@ -47,6 +48,9 @@ def cut(image):
     image = image.astype('int')
 
     dim_x, dim_y, colors = image.shape
+
+    assert colors == 3
+
     A = set()
     B = {(i, j) for i in range(dim_x) for j in range(dim_y)}
     for _ in range(10):
