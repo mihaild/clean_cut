@@ -1,5 +1,7 @@
 import sys
 from scipy import misc
+import numpy as np
+
 try:
     from tqdm import tqdm
 except ImportError:
@@ -39,8 +41,10 @@ def flip(i, j, A, B):
 
 
 def cut(image):
-    T = [0, 255, 0]
-    S = [255, 0, 0]
+    T = np.array([0, 255, 0], dtype='int')
+    S = np.array([255, 0, 0], dtype='int')
+
+    image = image.astype('int')
 
     dim_x, dim_y, colors = image.shape
     A = set()
